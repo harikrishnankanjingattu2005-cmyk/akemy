@@ -167,25 +167,17 @@ export default function Hero({ setCurrentPage }: HeroProps) {
       id="hero-section"
       className="relative min-h-screen w-full flex flex-col items-center justify-center pt-28 pb-20 overflow-hidden bg-brand-bg bg-grain"
     >
-      {/* 1. Atmospheric Ambient lighting effects */}
-      <motion.div 
-        style={{ x: bgX1, y: bgY1 }}
-        className="absolute top-1/4 left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-navy/5 blur-[120px] pointer-events-none" 
-      />
-      <motion.div 
-        style={{ x: bgX2, y: bgY2 }}
-        className="absolute bottom-1/4 right-[-10%] w-[45%] h-[45%] rounded-full bg-brand-gold/10 blur-[130px] pointer-events-none" 
-      />
+      {/* 1. Atmospheric Ambient lighting effects (Static for maximum hardware-accelerated scroll smoothness) */}
+      <div className="absolute top-1/4 left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-navy/5 blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-[-10%] w-[45%] h-[45%] rounded-full bg-brand-gold/8 blur-[90px] pointer-events-none" />
 
-      {/* 2. Floating geometric shapes (Parallax layers) */}
+      {/* 2. Floating geometric shapes (Smooth CSS-like loop animations without cursor parallax lag) */}
       <motion.div
-        style={{ x: bgX1, y: bgY2 }}
         className="absolute top-1/3 right-[15%] w-12 h-12 rounded-full border border-brand-gold/35 pointer-events-none hidden md:block"
         animate={{ y: [0, -15, 0] }}
         transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
       />
       <motion.div
-        style={{ x: bgX2, y: bgY1 }}
         className="absolute bottom-1/4 left-[10%] w-16 h-16 rounded-xl border border-brand-navy/15 pointer-events-none rotate-45 hidden md:block"
         animate={{ rotate: [45, 90, 45], y: [0, 20, 0] }}
         transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
@@ -340,8 +332,7 @@ export default function Hero({ setCurrentPage }: HeroProps) {
                 <motion.div
                   key={card.id}
                   initial={{ opacity: 0, scale: 0.95, y: 50 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.15 }}
                   className="flip-card-container cursor-pointer shrink-0"
                   onClick={() => toggleFlip(card.id)}

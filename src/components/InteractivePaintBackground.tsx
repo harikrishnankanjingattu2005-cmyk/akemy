@@ -60,6 +60,8 @@ export default function InteractivePaintBackground() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
+    let isDrawing = false;
+
     // Dynamic scratch generator
     const spawnScratch = (x1: number, y1: number, x2: number, y2: number, speed: number) => {
       const numLines = 3 + Math.floor(Math.random() * 3); // 3 to 5 parallel grooves
@@ -102,6 +104,11 @@ export default function InteractivePaintBackground() {
           rotation: Math.random() * Math.PI * 2,
           rotSpeed: (Math.random() - 0.5) * 0.2,
         });
+      }
+
+      if (!isDrawing) {
+        isDrawing = true;
+        animate();
       }
     };
 
@@ -224,10 +231,13 @@ export default function InteractivePaintBackground() {
       scratches = scratches.filter((s) => s.alpha > 0.01);
       sparks = sparks.filter((s) => s.alpha > 0.01);
 
-      animationId = requestAnimationFrame(animate);
+      if (scratches.length > 0 || sparks.length > 0) {
+        animationId = requestAnimationFrame(animate);
+      } else {
+        isDrawing = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // completely clear when done
+      }
     };
-
-    animate();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
