@@ -35,7 +35,7 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
       id="main-navigation"
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
         isScrolled 
-          ? 'py-4 glass-panel bg-brand-bg/75 shadow-[0_8px_32px_rgba(26,36,61,0.05)]' 
+          ? 'py-4 backdrop-blur-md bg-white/10 border-b border-white/20 shadow-lg' 
           : 'py-6 bg-transparent'
       }`}
       initial={{ y: -100, opacity: 0 }}
