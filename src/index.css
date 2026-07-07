@@ -29,6 +29,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: #F5EFE2;
     color: #1A243D;
@@ -36,14 +40,23 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -10;
     background-image: linear-gradient(rgba(245, 239, 226, 0.65), rgba(245, 239, 226, 0.65)), url('/background.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    pointer-events: none;
   }
-  
-  /* Custom scrollbar config */
 }
 
 /* Custom Scrollbar */
