@@ -33,16 +33,12 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
   return (
     <motion.header
       id="main-navigation"
-      className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
-        isScrolled 
-          ? 'py-4 backdrop-blur-md bg-white/10 border-b border-white/20 shadow-lg' 
-          : 'py-6 bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 bg-transparent`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between relative">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between relative py-6">
         
         {/* Centered logo on mobile, left-aligned on desktop */}
         <div className="flex items-center justify-center md:justify-start w-full">
